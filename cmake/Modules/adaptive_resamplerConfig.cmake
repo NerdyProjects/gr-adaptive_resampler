@@ -1,0 +1,31 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_ADAPTIVE_RESAMPLER adaptive_resampler)
+
+FIND_PATH(
+    ADAPTIVE_RESAMPLER_INCLUDE_DIRS
+    NAMES adaptive_resampler/api.h
+    HINTS $ENV{ADAPTIVE_RESAMPLER_DIR}/include
+        ${PC_ADAPTIVE_RESAMPLER_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    ADAPTIVE_RESAMPLER_LIBRARIES
+    NAMES gnuradio-adaptive_resampler
+    HINTS $ENV{ADAPTIVE_RESAMPLER_DIR}/lib
+        ${PC_ADAPTIVE_RESAMPLER_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+          )
+
+include("${CMAKE_CURRENT_LIST_DIR}/adaptive_resamplerTarget.cmake")
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(ADAPTIVE_RESAMPLER DEFAULT_MSG ADAPTIVE_RESAMPLER_LIBRARIES ADAPTIVE_RESAMPLER_INCLUDE_DIRS)
+MARK_AS_ADVANCED(ADAPTIVE_RESAMPLER_LIBRARIES ADAPTIVE_RESAMPLER_INCLUDE_DIRS)

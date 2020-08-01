@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio ADAPTIVE_RESAMPLER C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the ADAPTIVE_RESAMPLER GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+
